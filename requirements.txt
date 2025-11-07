@@ -3,5 +3,6 @@ gunicorn
 numpy
 opencv-python
 faiss-cpu
-tensorflow==2.15.0
+tensorflow-cpu==2.15.0
 werkzeug
+vercel-python-wsgi
