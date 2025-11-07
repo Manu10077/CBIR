@@ -2,8 +2,9 @@ services:
   - type: web
     name: cbir-vision
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app_flask:app
-    envVars:
-      - key: PORT
-        value: 5000
+    plan: free
+    buildCommand: |
+      apt-get update && apt-get install -y python3.12 python3.12-venv python3.12-distutils
+      curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
+      python3.12 -m pip install -r requirements.txt
+    startCommand: python3.12 app_flask.py
