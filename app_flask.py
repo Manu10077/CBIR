@@ -66,4 +66,5 @@ def dataset_file(filename):
     return send_from_directory("dataset", filename)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from vercel_python_wsgi import serverless_wsgi
+    app = serverless_wsgi(app)
