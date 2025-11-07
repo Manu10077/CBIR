@@ -2,11 +2,21 @@ from flask import Flask, render_template, request
 import numpy as np
 import cv2
 import faiss
+import os
 
 app = Flask(__name__)
 
-# Load FAISS features once
-features = np.load("cnn_features.npy", allow_pickle=True)
+# Load precomputed features safely
+if os.path.exists("cnn_features.npy"):
+    features = np.load("cnn_features.npy", allow_pickle=True)
+    print("✅ Features loaded successfully!")
+else:
+    features = None
+    print("⚠️ cnn_features.npy not found!")
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -38,5 +48,6 @@ def index():
 
 if __name__ == '__main__':
     app.run()
+
 
 
