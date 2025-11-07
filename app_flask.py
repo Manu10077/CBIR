@@ -6,7 +6,7 @@ import faiss
 app = Flask(__name__)
 
 # Load FAISS features once
-features = np.load("features.npy")
+features = np.load("cnn_features.npy")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -37,3 +37,4 @@ def index():
 
 if __name__ == '__main__':
     app.run()
+
