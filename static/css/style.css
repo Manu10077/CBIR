@@ -1,0 +1,182 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #e8e8e8;
+  overflow-x: hidden;
+  background: transparent;
+  padding-bottom: 80px;
+}
+
+/* ===== Animated Gradient Background ===== */
+.animated-bg {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: -3;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background-size: 600% 600%;
+  animation: gradientMove 12s ease infinite;
+  filter: blur(100px);
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== Moving Dataset Background ===== */
+.moving-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.image-row {
+  display: flex;
+  width: 200%;
+  animation: moveRow 60s linear infinite;
+  filter: blur(4px) opacity(0.15);
+}
+.image-row:nth-child(2) {
+  animation-direction: reverse;
+  animation-duration: 75s;
+}
+.image-row:nth-child(3) {
+  animation-duration: 90s;
+}
+
+.image-row img {
+  width: 220px;
+  height: 150px;
+  margin-right: 8px;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+@keyframes moveRow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  position: relative;
+  z-index: 10;
+}
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+  margin-bottom: 15px;
+}
+h1 {
+  font-weight: 700;
+  color: #00e0ff;
+  font-size: 2.4em;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+.tagline {
+  color: #cfcfcf;
+  font-size: 1.05em;
+}
+
+/* ===== Upload Box ===== */
+.upload-box {
+  width: 50%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 35px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+}
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.upload-label {
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #00e0ff;
+}
+.search-btn {
+  background: #00e0ff;
+  border: none;
+  color: #0d1117;
+  padding: 10px 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.search-btn:hover {
+  background: #00b0cc;
+  transform: translateY(-2px);
+}
+.error { color: #ff4d4d; font-weight: 600; }
+
+/* ===== Results Section ===== */
+.query-section { text-align: center; width: 60%; margin: 0 auto; padding: 25px; }
+.query-img {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,255,255,0.3);
+  margin-top: 15px;
+}
+.pred span { color: #00e0ff; font-weight: 600; }
+
+.gallery { margin: 60px auto; width: 90%; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+.card img { width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease; }
+.card:hover img { transform: scale(1.08); }
+.card p {
+  margin: 0; padding: 10px; font-size: 0.9em;
+  color: #00e0ff; background: rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Footer ===== */
+footer {
+  width: 100%;
+  padding: 20px 0;
+  background: rgba(10, 12, 18, 0.85);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.95em;
+  color: #9aa0a6;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  backdrop-filter: blur(6px);
+}
+footer p { margin: 0; color: #cfcfcf; }
+footer span { color: #00e0ff; font-weight: 600; }

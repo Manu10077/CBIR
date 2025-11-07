@@ -1,0 +1,8 @@
+streamlit
+tensorflowtensorflow==2.19.0
+opencv-python
+numpy
+scipy
+faiss-cpu
+Pillow
+werkzeug

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBIR Vision — Smart Image Search</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="animated-bg"></div>
+
+  <!-- Moving dataset rows -->
+  <div class="moving-bg">
+    {% for row in range(3) %}
+      <div class="image-row">
+        {% for img in dataset_images %}
+          <img src="{{ url_for('dataset_file', filename=img) }}" alt="bg-img">
+        {% endfor %}
+        {% for img in dataset_images %}
+          <img src="{{ url_for('dataset_file', filename=img) }}" alt="bg-img">
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <header>
+    <div class="header-content">
+      <img src="{{ url_for('static', filename='logo.png') }}" class="logo" alt="Logo">
+      <h1>CBIR Vision</h1>
+      <p class="tagline">AI-Powered Image Similarity Search</p>
+    </div>
+  </header>
+
+  <section class="upload-box glass">
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <label for="query_image" class="upload-label">📤 Choose an Image</label>
+      <input type="file" name="query_image" id="query_image" accept="image/*" required>
+      <button type="submit" class="search-btn">🔍 Search</button>
+    </form>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+  </section>
+
+  {% if query_img %}
+  <section class="results fade-in">
+    <div class="query-section glass">
+      <h2>Query Image</h2>
+      <img src="{{ url_for('uploaded_file', filename=query_img) }}" class="query-img" alt="Query">
+      <p class="pred">Predicted Category: <span>{{ predicted }}</span></p>
+    </div>
+
+    <div class="gallery">
+      <h2>Similar Images</h2>
+      <div class="grid">
+        {% for sim, path in results %}
+        <div class="card glass zoom-in">
+          <img src="{{ path }}" alt="Result">
+          <p>Similarity: <span>{{ "%.2f"|format(sim) }}</span></p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <footer>
+    <p>Developed by <b>Adwaith P</b> | Powered by <span>Flask · FAISS · VGG16</span></p>
+  </footer>
+</body>
+</html>
