@@ -1,8 +1,7 @@
-streamlit
-tensorflowtensorflow==2.19.0
-opencv-python
+flask
+gunicorn
 numpy
-scipy
+opencv-python
 faiss-cpu
-Pillow
+tensorflow==2.15.0
 werkzeug
